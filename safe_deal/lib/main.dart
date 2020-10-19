@@ -8,6 +8,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -57,6 +58,18 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _openNavigation() {
+    //bu kısımda navigation drawer i açıyoruz
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+      Scaffold.of(context).openDrawer();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -67,47 +80,286 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        elevation: 0,
+        backgroundColor: Color.fromRGBO(136, 196, 239, 1),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
+      drawer: Drawer(
+        // Add a ListView to the drawer. This ensures the user can scroll
+        // through the options in the drawer if there isn't enough vertical
+        // space to fit everything.
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many timez:',
+            DrawerHeader(
+              child: Text('Drawer Header'),
+              decoration: BoxDecoration(
+                color: Color.fromRGBO(136, 196, 239, 1),
+              ),
             ),
-            
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
+            ListTile(
+              title: Text('Item 1'),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
             ),
-            
+            ListTile(
+              title: Text('Item 2'),
+              onTap: () {
+                // Update the state of the app.
+                // ...
+              },
+            ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+///linear gradient için önce bi container oluşturulur ve sonra o container boxdecoretion verilir.boxdecoration un gradient özelliğine vereceğimiz linear gradient witget ı
+      ///colors listesi alır bu listede ben üç renk koydum sırayla bu renkler takip edilir
+      body: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+          Color.fromRGBO(136, 196, 239, 1),
+          Color.fromRGBO(134, 175, 205, 1),
+          Color.fromRGBO(226, 236, 246, 1)
+        ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+        child: Center(
+          // Center is a layout widget. It takes a single child and positions it
+          // in the middle of the parent.
+          child: Column(
+            // Column is also a layout widget. It takes a list of children and
+            // arranges them vertically. By default, it sizes itself to fit its
+            // children horizontally, and tries to be as tall as its parent.
+            //
+            // Invoke "debug painting" (press "p" in the console, choose the
+            // "Toggle Debug Paint" action from the Flutter Inspector in Android
+            // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+            // to see the wireframe for each widget.
+            //
+            // Column has various properties to control how it sizes itself and
+            // how it positions its children. Here we use mainAxisAlignment to
+            // center the children vertically; the main axis here is the vertical
+            // axis because Columns are vertical (the cross axis would be
+            // horizontal).
+
+            children: <Widget>[
+              Container(
+                //gölge vermek için container oluşturulur decoration a boxdecoration verilir ve boxshadadow ile gölge verilir.
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    new BoxShadow(
+                        color: Color.fromRGBO(0, 0, 0, 0.16),
+                        blurRadius: 16.0,
+                        offset: Offset(8.0, 8.0))
+                  ],
+                ),
+                margin: EdgeInsets.only(top: 10),
+                child: Image.asset("assets/images/safe_deal_logo.png",
+                    width: 144, height: 144),
+              ),
+              Stack(
+                //stack içine verilen widgetler üst üste biner positioned ile de bu üst üste bbinen widgetlerdan positioned içinde olan witget kaydırılır.
+                children: [
+                  Container(
+                    width: 450,
+                    height: 425,
+                  ),
+                  Positioned(
+                    top: -80,
+                      left: 155,
+                      child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              new BoxShadow(
+                                  color: Color.fromRGBO(0, 0, 0, 0.16),
+                                  blurRadius: 16.0,
+                                  offset: Offset(8.0, 8.0),
+                                  spreadRadius: 2.0),
+                            ],
+                          ),
+                          margin: EdgeInsets.only(top: 116),
+                          child: IconButton(
+                            icon: Image.asset(
+                              "assets/images/phone_logo.png",
+                            ),
+                            iconSize: 80,
+                          ))),
+                  Positioned(
+                    top: -40,
+                      left: 250,
+                      child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              new BoxShadow(
+                                  color: Color.fromRGBO(0, 0, 0, 0.16),
+                                  blurRadius: 16.0,
+                                  offset: Offset(8.0, 8.0),
+                                  spreadRadius: 2.0),
+                            ],
+                          ),
+                          margin: EdgeInsets.only(top: 116),
+                          child: IconButton(
+                            icon: Image.asset(
+                              "assets/images/camera.png",
+                            ),
+                            iconSize: 80,
+                          ))),
+                  Positioned(
+                      top: 50,
+                      left: 280,
+                      child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              new BoxShadow(
+                                  color: Color.fromRGBO(0, 0, 0, 0.16),
+                                  blurRadius: 16.0,
+                                  offset: Offset(8.0, 8.0),
+                                  spreadRadius: 2.0),
+                            ],
+                          ),
+                          margin: EdgeInsets.only(top: 116),
+                          child: IconButton(
+                            icon: Image.asset(
+                              "assets/images/computer_logo.png",
+                            ),
+                            iconSize: 80,
+                          ))),
+                  Positioned(
+                      top: 170,
+                      left: 160,
+                      child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              new BoxShadow(
+                                  color: Color.fromRGBO(0, 0, 0, 0.16),
+                                  blurRadius: 16.0,
+                                  offset: Offset(8.0, 8.0),
+                                  spreadRadius: 2.0),
+                            ],
+                          ),
+                          margin: EdgeInsets.only(top: 116),
+                          child: IconButton(
+                            icon: Image.asset(
+                              "assets/images/console.png",
+                            ),
+                            iconSize: 80,
+                          ))),
+                  Positioned(
+                      top: 140,
+                      left: 250,
+                      child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              new BoxShadow(
+                                  color: Color.fromRGBO(0, 0, 0, 0.16),
+                                  blurRadius: 16.0,
+                                  offset: Offset(8.0, 8.0),
+                                  spreadRadius: 2.0),
+                            ],
+                          ),
+                          margin: EdgeInsets.only(top: 116),
+                          child: IconButton(
+                            icon: Image.asset(
+                              "assets/images/HEAD_PHONE.png",
+                            ),
+                            iconSize: 80,
+                          ))),
+                  Positioned(
+                      top: 150,
+                      left: 60,
+                      child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              new BoxShadow(
+                                  color: Color.fromRGBO(0, 0, 0, 0.16),
+                                  blurRadius: 16.0,
+                                  offset: Offset(8.0, 8.0),
+                                  spreadRadius: 2.0),
+                            ],
+                          ),
+                          margin: EdgeInsets.only(top: 116),
+                          child: IconButton(
+                            icon: Image.asset(
+                              "assets/images/iron.png",
+                            ),
+                            iconSize: 80,
+                          ))),
+                  Positioned(
+                      top: 25,
+                      left: 135,
+                      child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              new BoxShadow(
+                                  color: Color.fromRGBO(0, 0, 0, 0.16),
+                                  blurRadius: 16.0,
+                                  offset: Offset(8.0, 8.0),
+                                  spreadRadius: 2.0),
+                            ],
+                          ),
+                          margin: EdgeInsets.only(top: 116),
+                          child: IconButton(
+                            icon: Image.asset(
+                              "assets/images/plus2.png",
+                            ),
+                            iconSize: 122,
+                          ))),
+                  Positioned(
+                      top: -40,
+                      left: 60,
+                      child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              new BoxShadow(
+                                  color: Color.fromRGBO(0, 0, 0, 0.16),
+                                  blurRadius: 16.0,
+                                  offset: Offset(8.0, 8.0),
+                                  spreadRadius: 2.0),
+                            ],
+                          ),
+                          margin: EdgeInsets.only(top: 116),
+                          child: IconButton(
+                            icon: Image.asset(
+                              "assets/images/tablet.png",
+                            ),
+                            iconSize: 80,
+                          ))),
+                  Positioned(
+                      top: 50,
+                      left: 30,
+                      child: Container(
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              new BoxShadow(
+                                  color: Color.fromRGBO(0, 0, 0, 0.16),
+                                  blurRadius: 16.0,
+                                  offset: Offset(8.0, 8.0),
+                                  spreadRadius: 2.0),
+                            ],
+                          ),
+                          margin: EdgeInsets.only(top: 116),
+                          child: IconButton(
+                            icon: Image.asset(
+                              "assets/images/white_goods.png",
+                            ),
+                            iconSize: 80,
+                          ))),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
