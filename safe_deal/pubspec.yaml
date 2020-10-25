@@ -24,6 +24,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   syncfusion_flutter_gauges: ^18.2.44
+  google_fonts:
 
 dev_dependencies:
   flutter_test:
@@ -53,6 +54,9 @@ flutter:
     - assets/images/tablet.png
     - assets/images/white_goods.png
     - assets/images/phone_logo.png
+    - assets/images/facebook.png
+    - assets/images/google.png
+    - assets/images/userface.png
 
   #  - images/a_dot_ham.jpeg
 

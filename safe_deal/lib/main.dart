@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:safe_deal/product_info.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:safe_deal/profile.dart';
+import 'package:safe_deal/sign_up.dart';
+import 'package:safe_deal/update_product_info.dart';
 
 void main() => runApp(MyApp());
 
@@ -19,6 +24,11 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
+
+        textTheme: GoogleFonts.balooTammuduTextTheme(
+          Theme.of(context).textTheme,
+        ),
+
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(title: 'Flutter'),
@@ -114,7 +124,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-///linear gradient için önce bi container oluşturulur ve sonra o container boxdecoretion verilir.boxdecoration un gradient özelliğine vereceğimiz linear gradient witget ı
+
+      ///linear gradient için önce bi container oluşturulur ve sonra o container boxdecoretion verilir.boxdecoration un gradient özelliğine vereceğimiz linear gradient witget ı
       ///colors listesi alır bu listede ben üç renk koydum sırayla bu renkler takip edilir
       body: Container(
         decoration: BoxDecoration(
@@ -165,7 +176,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     height: 425,
                   ),
                   Positioned(
-                    top: -80,
+                      top: -80,
                       left: 155,
                       child: Container(
                           decoration: BoxDecoration(
@@ -186,7 +197,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             iconSize: 80,
                           ))),
                   Positioned(
-                    top: -40,
+                      top: -40,
                       left: 250,
                       child: Container(
                           decoration: BoxDecoration(
