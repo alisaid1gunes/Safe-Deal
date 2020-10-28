@@ -3,6 +3,7 @@ import 'package:safe_deal/product_info.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:safe_deal/profile.dart';
 import 'package:safe_deal/sign_up.dart';
+import 'package:safe_deal/splash_sreen.dart';
 import 'package:safe_deal/update_product_info.dart';
 
 void main() => runApp(MyApp());
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter'),
+      home: SplashScreen(title: 'Flutter'),
     );
   }
 }
